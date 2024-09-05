@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_instance" "example" {
   ami           = "ami-04fdea8e25817cd69"  # Amazon Linux 2 AMI
   instance_type = "t2.micro"
-  key_name      = "tfdemo"
+  key_name      = "tfcloud"
 
   provisioner "local-exec" {
     command = "echo Instance ID: ${self.id} > instance_id.txt"
@@ -22,13 +22,13 @@ resource "aws_instance" "example" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("tfdemo.pem")
+      private_key = file("tfcloud.pem")
       host        = self.public_ip
     }
   }
 
   tags = {
-    Name = "TerraformProvisionerExample"
+    Name = "TerraformcloudExample"
   }
 }
 
